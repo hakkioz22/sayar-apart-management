@@ -1,12 +1,22 @@
 package com.tpe.domain;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
+@Entity
 public class Apart {
 
     @Id
@@ -21,14 +31,15 @@ public class Apart {
     @Column
     private double rentPrice;
 
-    @NotBlank(message = "Please provide Tenant Name")
-    @Column
-    private String tenantName;
-
-    @Pattern(regexp = "^((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$", message = "Please provide valid phone number")
-    @Column(length = 14)
-    private String phoneNumber;
-
     @NotBlank(message = "Did tenant pay his/her payments? True or False")
     private Boolean isPaid;
+
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private LocalDate rentDate;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @JoinColumn(name = "tenant_fullName")
+    private Tenant tenant;
 }

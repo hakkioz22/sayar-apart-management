@@ -8,8 +8,7 @@ public interface ApartService {
 
     List<Apart> getAllApart();
     Apart findApartById(Long id);
-
     void saveApart(Apart apart);
-    void updateApart(Long id,Apart apart);
+    Apart updateApart(Long id, Apart apart);
     void deleteApart(Long id);
 }
