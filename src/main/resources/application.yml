@@ -23,7 +23,7 @@ spring:
 
 logging:
   file:
-    name: logs/talentmanagement.log
+    name: logs/sayarmanagement.log
   pattern:
     file: "%d %-5level [%thread] %logger:%msg%n"
   level:

@@ -1,11 +1,9 @@
 package com.tpe.repository;
 
-import com.tpe.domain.Apart;
+import com.tpe.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ApartRepository extends JpaRepository<Apart,Long>{
-
-    boolean existByTenantName(String tenantName);
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
 }
